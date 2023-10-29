@@ -5,7 +5,7 @@ import './App.css';
 
 function App() {
   const [searchText, setSearchText] = useState("");
-  const [playerData, setPlayerData] = useState("");
+  const [playerData, setPlayerData] = useState({});
   const API_Key = "RGAPI-c2c088ae-6c9c-4ef6-81eb-92afefa77c6f";
   
   function searchforPlayer(event){
@@ -18,7 +18,8 @@ function App() {
       console.log(error);
     });
   }
-console.log(playerData);
+  console.log(playerData);
+
   return (
     <div className="App">
       <div className='container'>
@@ -31,9 +32,13 @@ console.log(playerData);
         </button>
 
       </div>
-      {JSON.stringify(playerData) != '{}' ? 
-      <><p>We have player Data</p></>
-      : 
+      {JSON.stringify(playerData) !== '{}' ? 
+      <><p>{playerData.name}</p>
+        <img width="100" height = "100" src={"http://ddragon.leagueoflegends.com/cdn/13.21.1/img/profileicon/" + playerData.profileIconId + ".png"}></img>
+        <p>Summoner Level {playerData.summonerLevel}</p>
+      </>
+
+      :
       <><p>No player data</p></>
 
       }
